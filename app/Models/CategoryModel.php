@@ -29,4 +29,25 @@ class CategoryModel extends Model
     protected $allowedFields = [
         'parent_id', 'name', 'description'
     ];
+
+    /**
+     * @param int|null $excludeID
+     *
+     * @return array
+     */
+    public function getListOptions(int $excludeID = null): array
+    {
+        $items = is_null($excludeID)
+            ? $this->findAll()
+            : $this->where('id !=', $excludeID)->findAll();
+
+        $options = [];
+        if (!empty($items)) {
+            foreach ($items as $item) {
+                $options[$item['id']] = $item['name'];
+            }
+        }
+
+        return $options;
+    }
 }

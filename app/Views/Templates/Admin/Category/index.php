@@ -10,7 +10,7 @@
                     <h4 class="mb-0">Список категорий</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Панель состояния</a></li>
+                            <li class="breadcrumb-item"><a href="<?= base_url('admin') ?>">Панель состояния</a></li>
                             <li class="breadcrumb-item active">Категории</li>
                         </ol>
                     </div>
@@ -42,8 +42,8 @@
                                         <td><?php echo $category['description']; ?></td>
                                         <td>
                                             <?php if (!is_null($category['parent_id'])) : ?>
-                                                <a href="<?php echo base_url('admin/category/edit/' . $category['id']); ?>" class="btn btn-primary btn-sm">Редагувати</a>
-                                                <a href="<?php echo base_url('admin/category/delete/' . $category['id']); ?>" class="btn btn-danger btn-sm">Видалити</a>
+                                                <a href="<?php echo base_url('admin/category/edit/' . $category['id']); ?>" class="btn btn-primary btn-sm">Редактировать</a>
+                                                <a href="<?php echo base_url('admin/category/delete/' . $category['id']); ?>" class="btn btn-danger btn-sm">Удалить</a>
                                             <?php endif; ?>
                                         </td>
                                     </tr>

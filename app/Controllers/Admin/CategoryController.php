@@ -43,9 +43,11 @@ class CategoryController extends ModuleController
      *
      * @return string
      */
-    public function create(): string
+    public function new(): string
     {
-        return view('Templates/Admin/Category/create');
+        return view('Templates/Admin/Category/create', [
+            'parents' => $this->model->getListOptions()
+        ]);
     }
 
     /**
@@ -54,15 +56,23 @@ class CategoryController extends ModuleController
      * @return mixed
      * @throws ReflectionException
      */
-    public function store()
+    public function create()
     {
-        $data = [
+        $rules = [
+            'name' => 'required',
+            'parent_id' => 'required',
+        ];
+        if (!$this->validate($rules)) {
+            return redirect()->to(base_url('admin/category/new'))
+                ->withInput()
+                ->with('errors', $this->validator->getErrors());
+        }
+        $this->model->insert([
             'name' => $this->request->getVar('name'),
             'parent_id' => $this->request->getVar('parent_id'),
             'description' => $this->request->getVar('description'),
-        ];
-        $this->model->insert($data);
-        return $this->response->redirect('admin/category');
+        ]);
+        return $this->response->redirect(base_url('admin/category'));
     }
 
     /**
@@ -76,25 +86,39 @@ class CategoryController extends ModuleController
     {
         $data['model'] = $this->model->where('id', $id)
             ->first();
+        $data['parents'] = $this->model
+            ->getListOptions((int)$id);
         return view('Templates/Admin/Category/update', $data);
     }
 
     /**
      * Update category model
      *
+     * @param string|null $id
+     *
      * @return mixed
      * @throws ReflectionException
      */
-    public function update()
+    public function update(string $id = null)
     {
-        $id = $this->request->getVar('id');
+        $rules = [
+            'name' => 'required',
+            'parent_id' => 'required',
+        ];
+        if (!$this->validate($rules)) {
+            return redirect()->to(base_url('admin/category/edit'))
+                ->withInput()
+                ->with('errors', $this->validator->getErrors());
+        }
         $data = [
             'name' => $this->request->getVar('name'),
             'parent_id' => $this->request->getVar('parent_id'),
             'description' => $this->request->getVar('description'),
         ];
+
+
         $this->model->update($id, $data);
-        return $this->response->redirect('admin/category');
+        return $this->response->redirect(base_url('admin/category'));
     }
 
     /**
@@ -105,6 +129,6 @@ class CategoryController extends ModuleController
     public function delete(string $id = null)
     {
         $this->model->where('id', $id)->delete($id);
-        return $this->response->redirect('admin/category');
+        return $this->response->redirect(base_url('admin/category'));
     }
 }
