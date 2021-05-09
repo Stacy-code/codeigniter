@@ -11,8 +11,13 @@ use CodeIgniter\Database\Migration;
  */
 class CreateUsersTable extends Migration
 {
+    /**
+     * @var string $table
+     */
+    private $table = 'users';
+
     /*
-     * Create table {users}
+     * Create table {$this->table}
      */
     public function up()
     {
@@ -31,14 +36,14 @@ class CreateUsersTable extends Migration
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addUniqueKey('email');
-        $this->forge->createTable('users', true);
+        $this->forge->createTable($this->table, true);
     }
 
     /*
-     * Drop table {users}
+     * Drop table {$this->table}
      */
     public function down()
     {
-        $this->forge->dropTable('users', true);
+        $this->forge->dropTable($this->table, true);
     }
 }

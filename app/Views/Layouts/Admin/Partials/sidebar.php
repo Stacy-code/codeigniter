@@ -15,6 +15,22 @@
                     </a>
                 </li>
                 <li class="menu-title">Блог</li>
+                <li class="<?= url_is('admin/post/*') ? 'mm-active' : '' ?>">
+                    <a href="javascript: void(0);" class="has-arrow waves-effect <?= url_is('admin/post/*') ? 'active' : '' ?>">
+                        <i class="ri-file-paper-2-line "></i>
+                        <span>Новости</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li>
+                            <a href="<?= base_url('admin/post') ?>"
+                                    class="<?= url_is('admin/post/index') ? 'active' : '' ?>">Список новостей</a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('admin/post/new') ?>"
+                                    class="<?= url_is('admin/post/new') ? 'active' : '' ?>">Добавить новость</a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="<?= url_is('admin/category/*') ? 'mm-active' : '' ?>">
                     <a href="javascript: void(0);" class="has-arrow waves-effect <?= url_is('admin/category/*') ? 'active' : '' ?>">
                         <i class="ri-layout-3-line"></i>
@@ -22,12 +38,12 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li>
-                            <a href="<?= base_url('admin.post') ?>"
+                            <a href="<?= base_url('admin/category') ?>"
                                     class="<?= url_is('admin/category/index') ? 'active' : '' ?>">Список категорий</a>
                         </li>
                         <li>
-                            <a href="<?= base_url('admin.post.new') ?>"
-                                    class="<?= url_is('admin/category/create') ? 'active' : '' ?>">Добавить категорию</a>
+                            <a href="<?= base_url('admin/category/new') ?>"
+                                    class="<?= url_is('admin/category/new') ? 'active' : '' ?>">Добавить категорию</a>
                         </li>
                     </ul>
                 </li>
@@ -38,28 +54,12 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li>
-                            <a href="<?= base_url('admin.post') ?>"
+                            <a href="<?= base_url('admin/tag') ?>"
                                     class="<?= url_is('admin/tag/index') ? 'active' : '' ?>">Список меток</a>
                         </li>
                         <li>
-                            <a href="<?= base_url('admin.post.new') ?>"
-                                    class="<?= url_is('admin/tag/create') ? 'active' : '' ?>">Добавить метку</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="<?= url_is('admin/post/*') ? 'mm-active' : '' ?>">
-                    <a href="javascript: void(0);" class="has-arrow waves-effect <?= url_is('admin/post/*') ? 'active' : '' ?>">
-                        <i class="ri-file-paper-2-line "></i>
-                        <span>Новости</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li>
-                            <a href="<?= base_url('admin.post') ?>"
-                                    class="<?= url_is('admin/post/index') ? 'active' : '' ?>">Список новостей</a>
-                        </li>
-                        <li>
-                            <a href="<?= base_url('admin.post.new') ?>"
-                                    class="<?= url_is('admin/post/create') ? 'active' : '' ?>">Добавить новость</a>
+                            <a href="<?= base_url('admin/tag/new') ?>"
+                                    class="<?= url_is('admin/tag/new') ? 'active' : '' ?>">Добавить метку</a>
                         </li>
                     </ul>
                 </li>
