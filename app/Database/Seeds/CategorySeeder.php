@@ -5,16 +5,16 @@ namespace App\Database\Seeds;
 use CodeIgniter\Database\Seeder;
 
 /**
- * Class UsersSeeder
+ * Class CategorySeeder
  *
  * @package App\Database\Seeds
  */
-class UsersSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * @var string $table
      */
-    private $table = 'users';
+    private $table = 'category';
 
     /**
      * @return mixed|void
@@ -22,11 +22,9 @@ class UsersSeeder extends Seeder
     public function run()
     {
         $data = [
-            'name' => 'admin',
-            'email' => 'admin@email.com',
-            'password_hash' => password_hash('admin', PASSWORD_DEFAULT),
-            'activate_hash' => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            'active' => 1
+            'parent_id' => null,
+            'name' => 'Корень категорий',
+            'description' => 'Корень всех категорий'
         ];
 
         // Using Query Builder

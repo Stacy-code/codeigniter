@@ -48,6 +48,7 @@ framework are exposed.
 ## Running seeders
 + `composer dump-autoload`
 + `php spark db:seed UsersSeeder`
++ `php spark db:seed CategorySeeder`
 
 ## Default admin account
 + `Email: admin@email.com`
