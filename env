@@ -20,6 +20,7 @@
 # APP
 #--------------------------------------------------------------------
 
+# app.name = 'Codeigniter'
 # app.baseURL = ''
 # app.forceGlobalSecureRequests = false
 

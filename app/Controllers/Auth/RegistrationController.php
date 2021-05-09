@@ -3,7 +3,7 @@
 namespace App\Controllers\Auth;
 
 use Config\Services;
-use Auth\Models\UserModel;
+use App\Models\UserModel;
 use CodeIgniter\Session\Session;
 
 /**
