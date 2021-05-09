@@ -151,7 +151,7 @@ gulp.task('copy:libs', function () {
 // Theme compiling
 gulp.task('build',
     gulp.series(
-        gulp.parallel('clean:packageLock', 'clean:dist', 'copy:libs', 'copy:fonts', 'copy:images'),
+        gulp.parallel('clean:packageLock', 'copy:libs', 'copy:fonts', 'copy:images'),
         'scss', 'js'
     )
 );

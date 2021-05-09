@@ -41,7 +41,7 @@ $routes->group('', ['namespace' => 'App\Controllers\Auth'], function ($routes) {
     // Login/out
     $routes->get('login', 'LoginController::login', ['as' => 'login']);
     $routes->post('login', 'LoginController::attemptLogin');
-    $routes->get('logout', 'LoginController::logout');
+    $routes->post('logout', 'LoginController::logout');
 
     // Forgotten password and reset
     $routes->get('forgot-password', 'PasswordController::forgotPassword', ['as' => 'forgot-password']);
@@ -56,7 +56,7 @@ $routes->group('', ['namespace' => 'App\Controllers\Auth'], function ($routes) {
  * Routes {Admin}
  * --------------------------------------------------------------------
  */
-$routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
+$routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Admin'], function ($routes) {
     $routes->get('/', 'DashboardController::index');
 });
 

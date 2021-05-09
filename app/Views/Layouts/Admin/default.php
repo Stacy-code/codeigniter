@@ -23,6 +23,7 @@
     </div>
 </main>
 <script src="<?= base_url('themes/ui/libs/jquery/jquery.min.js') ?>"></script>
+<script src="<?= base_url('themes/ui/libs/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 <script src="<?= base_url('themes/ui/libs/metismenu/metisMenu.min.js') ?>"></script>
 <script src="<?= base_url('themes/ui/libs/simplebar/simplebar.min.js') ?>"></script>
 <script src="<?= base_url('themes/ui/libs/node-waves/waves.min.js') ?>"></script>
