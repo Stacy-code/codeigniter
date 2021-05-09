@@ -42,8 +42,14 @@
                                         <td><?php echo $category['description']; ?></td>
                                         <td>
                                             <?php if (!is_null($category['parent_id'])) : ?>
-                                                <a href="<?php echo base_url('admin/category/edit/' . $category['id']); ?>" class="btn btn-primary btn-sm">Редактировать</a>
-                                                <a href="<?php echo base_url('admin/category/delete/' . $category['id']); ?>" class="btn btn-danger btn-sm">Удалить</a>
+                                                <a href="<?php echo base_url('admin/category/edit/' . $category['id']); ?>"
+                                                        class="btn btn-primary btn-sm">Редактировать</a>
+                                                <a href="<?php echo base_url('admin/category/delete/' . $category['id']); ?>"
+                                                        class="btn btn-danger btn-sm" onclick="event.preventDefault();
+                                                        document.getElementById('deleter-<?= $category['id'] ?>').submit();">Удалить</a>
+                                                <form id="deleter-<?= $category['id'] ?>" action="<?= base_url('admin/category/delete/' . $category['id']) ?>" method="POST" style="display: none;">
+                                                    <input type="hidden" name="id" id="id" value="<?= $category['id']; ?>">
+                                                </form>
                                             <?php endif; ?>
                                         </td>
                                     </tr>
@@ -57,12 +63,9 @@
         </div>
     </div>
 <?= $this->endSection() ?>
-
 <?= $this->include('Components/DataTable/assets') ?>
-<?= $this->section('content') ?>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#category-list').DataTable();
-        });
-    </script>
-<?= $this->endSection() ?>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#category-list').DataTable();
+    });
+</script>
