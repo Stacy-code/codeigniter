@@ -35,7 +35,7 @@ class LoginController extends ModuleController
     public function login()
     {
         if ($this->session->isLoggedIn) {
-            return redirect()->to('account');
+            return redirect()->to($this->homeUrl);
         }
 
         return view('Templates/Auth/login');

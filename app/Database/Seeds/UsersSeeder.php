@@ -11,19 +11,18 @@ use CodeIgniter\Database\Seeder;
  */
 class UsersSeeder extends Seeder
 {
+    /**
+     * @return mixed|void
+     */
     public function run()
     {
         $data = [
             'name' => 'admin',
             'email' => 'admin@email.com',
             'password_hash' => password_hash('admin', PASSWORD_DEFAULT),
-            'activate_hash' => random_string('alnum', 32),
+            'activate_hash' => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
             'active' => 1
         ];
-
-        // Simple Queries
-        $this->db->query("INSERT INTO users (`name`, `email`, `password_hash`, `activate_hash`, `active`) 
-            VALUES(:name:, :email:, :password_hash:, :activate_hash:, :active:)", $data);
 
         // Using Query Builder
         $this->db->table('users')->insert($data);
