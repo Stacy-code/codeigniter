@@ -48,14 +48,6 @@ $routes->group('', ['namespace' => 'App\Controllers\Auth'], function ($routes) {
     $routes->post('forgot-password', 'PasswordController::attemptForgotPassword');
     $routes->get('reset-password', 'PasswordController::resetPassword', ['as' => 'reset-password']);
     $routes->post('reset-password', 'PasswordController::attemptResetPassword');
-
-    // Account settings
-    $routes->get('account', 'AccountController::account', ['as' => 'account']);
-    $routes->post('account', 'AccountController::updateAccount');
-    $routes->post('change-email', 'AccountController::changeEmail');
-    $routes->get('confirm-email', 'AccountController::confirmNewEmail');
-    $routes->post('change-password', 'AccountController::changePassword');
-    $routes->post('delete-account', 'AccountController::deleteAccount');
 });
 
 
@@ -65,7 +57,7 @@ $routes->group('', ['namespace' => 'App\Controllers\Auth'], function ($routes) {
  * --------------------------------------------------------------------
  */
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
-
+    $routes->get('/', 'DashboardController::index');
 });
 
 
