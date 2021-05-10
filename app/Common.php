@@ -13,3 +13,19 @@
  *
  * @link: https://codeigniter4.github.io/CodeIgniter4/
  */
+
+use Symfony\Component\VarDumper\VarDumper;
+
+if (!function_exists('dd')) {
+    /**
+     * @param mixed ...$vars
+     */
+    function dd(...$vars)
+    {
+        foreach ($vars as $v) {
+            VarDumper::dump($v);
+        }
+
+        exit(1);
+    }
+}
