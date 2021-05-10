@@ -45,8 +45,10 @@
                                                 <a href="<?php echo base_url('admin/category/edit/' . $category['id']); ?>"
                                                         class="btn btn-primary btn-sm">Редактировать</a>
                                                 <a href="<?php echo base_url('admin/category/delete/' . $category['id']); ?>"
-                                                        class="btn btn-danger btn-sm" onclick="event.preventDefault();
-                                                        document.getElementById('deleter-<?= $category['id'] ?>').submit();">Удалить</a>
+                                                        class="btn btn-danger btn-sm"
+                                                        data-handler="callDeleter"
+                                                        data-name="<?= $category['name'] ?>"
+                                                        data-entity="<?= 'deleter-' . $category['id'] ?>">Удалить</a>
                                                 <form id="deleter-<?= $category['id'] ?>" action="<?= base_url('admin/category/delete/' . $category['id']) ?>" method="POST" style="display: none;">
                                                     <input type="hidden" name="id" id="id" value="<?= $category['id']; ?>">
                                                 </form>
@@ -63,9 +65,44 @@
         </div>
     </div>
 <?= $this->endSection() ?>
-<?= $this->include('Components/DataTable/assets') ?>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#category-list').DataTable();
-    });
-</script>
+
+<!-- Start load style before core -->
+<?= $this->section('startStyles') ?>
+    <?= $this->include('Components/DataTable/styles') ?>
+    <?= $this->include('Components/SweetAlerts/styles') ?>
+<?= $this->endSection() ?>
+
+<!-- Start load scripts before core -->
+<?= $this->section('startScripts') ?>
+    <?= $this->include('Components/DataTable/scripts') ?>
+    <?= $this->include('Components/SweetAlerts/scripts') ?>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            <!-- Init Datatable -->
+            $('#category-list').DataTable();
+            <!-- Init Deleter -->
+            $(document).on('click', '[data-handler="callDeleter"]', function (e) {
+                e.preventDefault();
+                var that = $(this),
+                    deleteForm = $(document).find('form#' + that.data('entity'));
+                if (deleteForm.length > 0) {
+                    Swal.fire({
+                        title: "Подтвердите удаление!",
+                        text: "Вы действительно хотите удалить " + that.data('name'),
+                        icon: "warning",
+                        showCancelButton: !0,
+                        confirmButtonColor: "#ff3d60",
+                        cancelButtonColor: "#34c38f",
+                        cancelButtonText: "Отмена",
+                        confirmButtonText: "Подтвердить"
+                    }).then(function(result) {
+                        if (result.isConfirmed) {
+                            $(deleteForm).submit();
+                        }
+                    });
+                }
+            })
+        });
+    </script>
+<?= $this->endSection() ?>
