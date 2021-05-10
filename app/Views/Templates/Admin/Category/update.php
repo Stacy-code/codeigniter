@@ -24,6 +24,16 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    <?php if (session()->has('errors')) : ?>
+                        <?php foreach (session('errors') as $error) : ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <?= $error ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endforeach ?>
+                    <?php endif ?>
                     <form method="post" action="<?= base_url('admin/category/update/' . $model['id']) ?>">
                         <div class="form-group text-right">
                             <button type="submit" class="btn btn-primary">Сохранить</button>
