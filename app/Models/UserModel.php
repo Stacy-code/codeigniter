@@ -83,4 +83,19 @@ class UserModel extends Model
 
 		return $data;
 	}
+
+    /**
+     * @return array
+     */
+    public function getListOptions(): array
+    {
+        $options = [];
+        $items = $this->findAll();
+        if (!empty($items)) {
+            foreach ($items as $item) {
+                $options[$item['id']] = $item['name'];
+            }
+        }
+        return $options;
+    }
 }

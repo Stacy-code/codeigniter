@@ -28,6 +28,7 @@ class CreatePostTable extends Migration
             'title' => ['type' => 'varchar', 'constraint' => 255],
             'content' => ['type' => 'text'],
             'publish' => ['type' => 'tinyint', 'constraint' => 1, 'null' => 0, 'default' => 0],
+            'published_at' => ['type' => 'bigint', 'null' => true],
             'created_at' => ['type' => 'bigint', 'null' => true],
             'updated_at' => ['type' => 'bigint', 'null' => true],
         ]);

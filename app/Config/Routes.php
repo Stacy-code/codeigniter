@@ -59,6 +59,7 @@ $routes->group('', ['namespace' => 'App\Controllers\Auth'], function ($routes) {
 $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Admin'], function ($routes) {
     $routes->get('/', 'DashboardController::index');
     $routes->presenter('category', ['controller' =>'CategoryController']);
+    $routes->presenter('post', ['controller' =>'PostController']);
 });
 
 
