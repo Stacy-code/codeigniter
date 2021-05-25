@@ -22,7 +22,7 @@ Additionally, make sure that the following extensions are enabled in your PHP:
 
 Run command in you domain root
 
-`git clone https://github.com/sihoulette/codeigniter.local.git .`
+`git clone https://github.com/Stacy-code/codeigniter.git .`
 
 ## Update composer dependence
 `composer update`
