@@ -15,19 +15,19 @@
     <form method="POST" action="<?= base_url('/create') ?>" class="col-6">
         <div class="form-group mb-2">
             <label for="author">Author</label>
-            <input name="author" type="text" class="form-control" id="author" aria-describedby="emailHelp" placeholder="Author">
+            <input name="author" type="text" class="form-control" id="author" aria-describedby="emailHelp" placeholder="Author" value="<?= old('author') ?>" >
         </div>
         <div class="form-group mb-2">
             <label for="email">Email</label>
-            <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="alex@mail.com">
+            <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="alex@mail.com" value="<?= old('email') ?>">
         </div>
         <div class="form-group mb-2">
             <label for="title">Title</label>
-            <input name="title"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title">
+            <input name="title"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title" value="<?= old('title') ?>">
         </div>
         <div class="form-group mb-2">
             <label for="content">Question</label>
-            <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="3"><?= old('content') ?></textarea>
         </div>
         <div class="form-group mt-2">
             <button name="save" type="submit" class="btn btn-outline-primary">Send</button>
