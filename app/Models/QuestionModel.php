@@ -5,7 +5,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 
 /**
- * Class PostModel
+ * Class QuestionModel
  *
  * @package App\Models
  */

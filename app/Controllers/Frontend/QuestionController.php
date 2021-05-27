@@ -28,7 +28,7 @@ class QuestionController extends BaseController
     }
 
     /**
-     * Show posts list
+     * Show questions list
      *
      * @return string
      */
@@ -40,7 +40,7 @@ class QuestionController extends BaseController
     }
 
     /**
-     * Create post form
+     * Create question form
      *
      * @return string
      */
