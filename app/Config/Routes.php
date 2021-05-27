@@ -70,6 +70,7 @@ $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Adm
  */
 $routes->group('', ['namespace' => 'App\Controllers\Frontend'], function ($routes) {
     $routes->get('/home', 'QuestionController::index');
+    $routes->get('/', 'QuestionController::index');
     $routes->get('/create', 'QuestionController::new');
     $routes->post('/create', 'QuestionController::create');
 });
