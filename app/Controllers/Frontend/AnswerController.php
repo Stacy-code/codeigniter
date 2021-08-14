@@ -3,7 +3,6 @@
 namespace App\Controllers\Frontend;
 
 use App\Models\AnswerModel;
-use App\Models\QuestionModel;
 use CodeIgniter\Model;
 use ReflectionException;
 use App\Controllers\BaseController;
@@ -12,17 +11,12 @@ use App\Controllers\BaseController;
  *
  * @package App\Controllers\Frontend
  */
-class QuestionController extends BaseController
+class AnswerController extends BaseController
 {
-    /**
-     * @var QuestionModel $model
-     */
-    public $model;
-
     /**
      * @var AnswerModel $model
      */
-    public $modelAnswer;
+    public $model;
 
     /**
      * Create model object on boot controller
@@ -30,8 +24,7 @@ class QuestionController extends BaseController
     public function boot()
     {
         parent::boot();
-        $this->model = new QuestionModel();
-        $this->modelAnswer = new AnswerModel();
+        $this->model = new AnswerModel();
     }
 
     /**
@@ -41,9 +34,8 @@ class QuestionController extends BaseController
      */
     public function index(): string
     {
-        $data['items'] = $this->model
-            ->orderBy('created_at', 'DESC')->findAll();
-
+        $data['answers'] = $this->model
+            ->orderBy('date_create', 'DESC')->findAll();
         return view('/home-page', $data);
     }
 
@@ -54,10 +46,8 @@ class QuestionController extends BaseController
      */
     public function new(): string
     {
-        return view('Templates/Site/Question/create-question');
+        return view('Templates/Site/Answer/create-answer');
     }
-
-
 
     /**
      * Insert question model
@@ -65,38 +55,25 @@ class QuestionController extends BaseController
      * @return mixed
      * @throws ReflectionException
      */
-    public function create()
+    public function create(string $id)
     {
 
         $rules = [
             'author' => 'required|min_length[2]|max_length[32]',
-            'email' => 'required|max_length[128]|valid_email',
-            'title' => 'required|min_length[10]|max_length[255]',
             'content' => 'required',
         ];
         if (!$this->validate($rules)) {
-            return redirect()->to(base_url('/create'))
+            return redirect()->to(base_url('/question/view/'.$id))
                 ->withInput()
                 ->with('errors', $this->validator->getErrors());
         }
         $this->model->insert([
             'author' => $this->request->getVar('author'),
-            'email' => $this->request->getVar('email'),
-            'title' => $this->request->getVar('title'),
             'content' => $this->request->getVar('content'),
+            'question_id' => $id
         ]);
 
 
-        return $this->response->redirect(base_url('/home'));
+        return $this->response->redirect(base_url('/question/view/'.$id));
     }
-
-
-    public function view(string $id){
-
-        $data['question'] = $this->model->where('id' , $id)->first();
-        $data['answers'] = $this->modelAnswer->where('question_id' , $id)->orderBy('date_create', 'DESC')->findAll();
-
-        return view('/question-view', $data);
-    }
-
 }

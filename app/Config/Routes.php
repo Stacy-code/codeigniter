@@ -73,6 +73,9 @@ $routes->group('', ['namespace' => 'App\Controllers\Frontend'], function ($route
     $routes->get('/', 'QuestionController::index');
     $routes->get('/create', 'QuestionController::new');
     $routes->post('/create', 'QuestionController::create');
+    $routes->get('/question/view/(:num)', 'QuestionController::view/$1');
+    $routes->post('/question/view/(:num)', 'AnswerController::create/$1');
+
 });
 
 

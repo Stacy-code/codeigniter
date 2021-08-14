@@ -1,6 +1,5 @@
 <?= $this->include('Layouts/partials/header-home') ?>
 
-
 <?php if(!empty($items)) : ?>
 
 <?php foreach($items as $item) : ?>
@@ -15,10 +14,16 @@
             <p><?= $item['content'] ?></p>
             <footer class="blockquote-footer"><?= $item['created_at'] ?></footer>
         </blockquote>
+
+        <a href="<?= base_url('/question/view/'.$item['id']) ?>" type="submit" class="btn btn-outline-primary">Show answers</a>
+
     </div>
 </div>
         </div>
+
 <?php endforeach ?>
+
+
 
 <?php else :?>
 
@@ -30,6 +35,7 @@
 </div>
 
 <?php endif ?>
+
 
 
 
